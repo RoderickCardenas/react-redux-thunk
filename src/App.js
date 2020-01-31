@@ -7,15 +7,8 @@ import { connect } from 'react-redux'
 // import all(*) as actions
 import * as actions from './actions'
 
-// import API file from API.js
-import API from './API'
-
 const App = props => {
-  const handleClick = () => {
-    return API.getFirstTwentyPokemon()
-      .then(resp => resp.json())
-      .then(pokemon => props.getPokemon(pokemon.results))
-  }
+  const handleClick = () => props.getPokemon()
 
   return (
     <div className='App'>

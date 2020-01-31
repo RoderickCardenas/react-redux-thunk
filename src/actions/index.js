@@ -1,8 +1,9 @@
-export const getPokemon = pokemon => {
-  return {
-    type: 'GET_POKEMON',
-    payload: pokemon
-  }
-}
+// import API file from API.js
+import API from '../API'
 
-// ADDING LINE TO COMMIT
+export const getPokemon = () => {
+  return dispatch =>
+    API.getFirstTwentyPokemon()
+      .then(resp => resp.json())
+      .then(pokemon => dispatch({ type: 'GET_POKEMON', payload: pokemon }))
+}
