@@ -5,5 +5,7 @@ export const getPokemon = () => {
   return dispatch =>
     API.getFirstTwentyPokemon()
       .then(resp => resp.json())
-      .then(pokemon => dispatch({ type: 'GET_POKEMON', payload: pokemon }))
+      .then(pokemon =>
+        dispatch({ type: 'GET_POKEMON', payload: pokemon.results })
+      )
 }
