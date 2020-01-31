@@ -5,21 +5,25 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 // importing redux
-import { createStore, combineReducers, compose } from 'redux'
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import getPokemon from './reducers/getPokemon'
+
+// import thunk
+import thunk from 'redux-thunk'
 
 // creating a store with devtools extension
 const store = createStore(
   combineReducers({ pokemon: getPokemon }),
   compose(
+    applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 )
 
 // passing store to Provider who passes it into app so any nested components can access the store via connect()
 ReactDOM.render(
-  <Provider store={store} context={store}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
